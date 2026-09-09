@@ -1,0 +1,85 @@
+[
+  {
+    "toAccount": "ACC-12345",
+    "amount": 5000.00,
+    "currency": "USD",
+    "type": "deposit",
+    "timestamp": "2024-01-03T09:15:00Z",
+    "status": "completed"
+  },
+  {
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-67890",
+    "amount": 100.50,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-05T14:20:00Z",
+    "status": "completed"
+  },
+  {
+    "fromAccount": "ACC-12345",
+    "amount": 250.00,
+    "currency": "USD",
+    "type": "withdrawal",
+    "timestamp": "2024-01-08T08:05:00Z",
+    "status": "completed"
+  },
+  {
+    "toAccount": "ACC-67890",
+    "amount": 1200.00,
+    "currency": "USD",
+    "type": "deposit",
+    "timestamp": "2024-01-10T11:00:00Z",
+    "status": "completed"
+  },
+  {
+    "fromAccount": "ACC-67890",
+    "toAccount": "ACC-12345",
+    "amount": 300.25,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-14T16:45:00Z",
+    "status": "completed"
+  },
+  {
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-A1B2C",
+    "amount": 75.00,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-20T10:30:00Z",
+    "status": "pending"
+  },
+  {
+    "fromAccount": "ACC-12345",
+    "amount": 40.00,
+    "currency": "USD",
+    "type": "withdrawal",
+    "timestamp": "2024-01-22T19:10:00Z",
+    "status": "failed"
+  },
+  {
+    "toAccount": "ACC-A1B2C",
+    "amount": 900.00,
+    "currency": "EUR",
+    "type": "deposit",
+    "timestamp": "2024-01-25T07:55:00Z",
+    "status": "completed"
+  },
+  {
+    "fromAccount": "ACC-A1B2C",
+    "amount": 120.99,
+    "currency": "EUR",
+    "type": "withdrawal",
+    "timestamp": "2024-02-02T12:00:00Z",
+    "status": "completed"
+  },
+  {
+    "toAccount": "ACC-12345",
+    "amount": 15000,
+    "currency": "JPY",
+    "type": "deposit",
+    "timestamp": "2024-02-05T06:30:00Z",
+    "status": "completed"
+  }
+]

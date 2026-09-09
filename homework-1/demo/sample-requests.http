@@ -1,0 +1,234 @@
+###############################################################################
+# Banking Transactions API — sample requests
+#
+# Open this file in VS Code with the "REST Client" extension (humao.rest-client)
+# or in JetBrains IDEs (built-in HTTP client) and click "Send Request" above any
+# block. Start the API first:  ./demo/run.sh
+#
+# The examples assume the demo ledger from demo/sample-data.json is loaded.
+###############################################################################
+
+@baseUrl = http://localhost:3456
+@contentType = application/json
+@accountA = ACC-12345
+@accountB = ACC-67890
+@accountC = ACC-A1B2C
+
+### Service index — every endpoint this API exposes
+GET {{baseUrl}}/
+
+### Health probe
+GET {{baseUrl}}/health
+
+
+###############################################################################
+# Task 1 — core endpoints
+###############################################################################
+
+# @name createTransfer
+### Create a transfer between two accounts
+POST {{baseUrl}}/transactions
+Content-Type: {{contentType}}
+
+{
+  "fromAccount": "{{accountA}}",
+  "toAccount": "{{accountB}}",
+  "amount": 100.50,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Create a deposit — money enters the ledger, so no fromAccount
+POST {{baseUrl}}/transactions
+Content-Type: {{contentType}}
+
+{
+  "toAccount": "{{accountA}}",
+  "amount": 2500.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Create a withdrawal — money leaves the ledger, so no toAccount
+POST {{baseUrl}}/transactions
+Content-Type: {{contentType}}
+
+{
+  "fromAccount": "{{accountA}}",
+  "amount": 99.99,
+  "currency": "USD",
+  "type": "withdrawal"
+}
+
+### Create a transaction with an explicit timestamp and status
+POST {{baseUrl}}/transactions
+Content-Type: {{contentType}}
+
+{
+  "toAccount": "{{accountC}}",
+  "amount": 10.00,
+  "currency": "EUR",
+  "type": "deposit",
+  "timestamp": "2024-01-15T10:30:00Z",
+  "status": "pending"
+}
+
+### List all transactions (newest first)
+GET {{baseUrl}}/transactions
+
+### Retrieve the transaction created by the "createTransfer" request above
+GET {{baseUrl}}/transactions/{{createTransfer.response.body.id}}
+
+### Account balance — one entry per currency
+GET {{baseUrl}}/accounts/{{accountA}}/balance
+
+### Account balance — single currency
+GET {{baseUrl}}/accounts/{{accountA}}/balance?currency=USD
+
+
+###############################################################################
+# Task 2 — validation (all of these return 4xx)
+###############################################################################
+
+### Everything invalid at once → 400 with one entry per field
+POST {{baseUrl}}/transactions
+Content-Type: {{contentType}}
+
+{
+  "fromAccount": "ACC-1",
+  "amount": -5.999,
+  "currency": "XYZ",
+  "type": "wire"
+}
+
+### More than 2 decimal places → 400
+POST {{baseUrl}}/transactions
+Content-Type: {{contentType}}
+
+{
+  "fromAccount": "{{accountA}}",
+  "toAccount": "{{accountB}}",
+  "amount": 10.555,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### JPY has no minor unit, so 100.50 JPY → 400
+POST {{baseUrl}}/transactions
+Content-Type: {{contentType}}
+
+{
+  "toAccount": "{{accountA}}",
+  "amount": 100.50,
+  "currency": "JPY",
+  "type": "deposit"
+}
+
+### A deposit must not carry a fromAccount → 400
+POST {{baseUrl}}/transactions
+Content-Type: {{contentType}}
+
+{
+  "fromAccount": "{{accountA}}",
+  "toAccount": "{{accountB}}",
+  "amount": 10.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### Transfer to the same account → 400
+POST {{baseUrl}}/transactions
+Content-Type: {{contentType}}
+
+{
+  "fromAccount": "{{accountA}}",
+  "toAccount": "{{accountA}}",
+  "amount": 10.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Missing Content-Type → 415
+POST {{baseUrl}}/transactions
+
+fromAccount=ACC-12345
+
+### Malformed JSON → 400
+POST {{baseUrl}}/transactions
+Content-Type: {{contentType}}
+
+{ "amount":
+
+### Unknown transaction id → 404
+GET {{baseUrl}}/transactions/00000000-0000-4000-8000-000000000000
+
+### Unknown account → 404
+GET {{baseUrl}}/accounts/ACC-99999/balance
+
+### Malformed account number → 400
+GET {{baseUrl}}/accounts/12345/balance
+
+### Unknown route → 404
+GET {{baseUrl}}/not-a-route
+
+
+###############################################################################
+# Task 3 — transaction history filters
+###############################################################################
+
+### Filter by account (matches either side of the transaction)
+GET {{baseUrl}}/transactions?accountId={{accountA}}
+
+### Filter by type
+GET {{baseUrl}}/transactions?type=transfer
+
+### Filter by date range (inclusive, whole UTC days)
+GET {{baseUrl}}/transactions?from=2024-01-01&to=2024-01-31
+
+### Filter by an exact ISO 8601 interval
+GET {{baseUrl}}/transactions?from=2024-01-05T00:00:00Z&to=2024-01-05T23:59:59Z
+
+### Combine filters
+GET {{baseUrl}}/transactions?accountId={{accountA}}&type=transfer&from=2024-01-01&to=2024-01-31
+
+### Extra filters: status and currency
+GET {{baseUrl}}/transactions?status=pending&currency=USD
+
+### Invalid filter values → 400
+GET {{baseUrl}}/transactions?type=wire&from=15/01/2024
+
+
+###############################################################################
+# Task 4 — summary, interest, CSV export, rate limiting
+###############################################################################
+
+### Account summary: deposits, withdrawals, counts, last activity
+GET {{baseUrl}}/accounts/{{accountA}}/summary
+
+### Account summary for a single currency
+GET {{baseUrl}}/accounts/{{accountA}}/summary?currency=USD
+
+### Simple interest: 5% annual, 30 days, on the USD balance
+GET {{baseUrl}}/accounts/{{accountA}}/interest?rate=0.05&days=30&currency=USD
+
+### Interest on a multi-currency account without ?currency= → 400
+GET {{baseUrl}}/accounts/{{accountA}}/interest?rate=0.05&days=30
+
+### Interest with an out-of-range rate → 400 (use 0.05 for 5%)
+GET {{baseUrl}}/accounts/{{accountA}}/interest?rate=5&days=30&currency=USD
+
+### CSV export of the whole ledger
+GET {{baseUrl}}/transactions/export?format=csv
+
+### CSV export honours the list filters
+GET {{baseUrl}}/transactions/export?format=csv&accountId={{accountA}}&from=2024-01-01&to=2024-01-31
+
+### The same data as JSON
+GET {{baseUrl}}/transactions/export?format=json
+
+### Unsupported export format → 400
+GET {{baseUrl}}/transactions/export?format=pdf
+
+### Rate limiting: every response carries X-RateLimit-* headers.
+### Send this more than 100 times within a minute to get a 429.
+GET {{baseUrl}}/health

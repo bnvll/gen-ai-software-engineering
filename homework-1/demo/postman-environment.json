@@ -1,0 +1,19 @@
+{
+  "id": "b1a2n3k4-0002-4000-8000-bank1ngap1env",
+  "name": "Banking API — local",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3456",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "txnId",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}
