@@ -1,0 +1,32 @@
+{
+  "name": "intelligent-customer-support",
+  "version": "1.0.0",
+  "description": "Customer support ticket API with multi-format import, rule-based auto-classification, SQLite storage, and an agent UI (AI-assisted development course, homework 2)",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "LOG_LEVEL=silent node --test --test-concurrency=1 \"tests/**/*.test.js\"",
+    "test:coverage": "LOG_LEVEL=silent node --test --test-concurrency=1 --experimental-test-coverage --test-coverage-exclude=\"tests/**\" \"tests/**/*.test.js\"",
+    "test:coverage:html": "LOG_LEVEL=silent node --test --test-concurrency=1 --experimental-test-coverage --test-coverage-exclude=\"tests/**\" --experimental-test-coverage-export=coverage/coverage.json \"tests/**/*.test.js\"",
+    "seed": "node src/utils/seedDatabase.js"
+  },
+  "keywords": [
+    "support",
+    "tickets",
+    "rest",
+    "express",
+    "sqlite",
+    "ai-assisted"
+  ],
+  "author": "Simone Benevelli",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0",
+    "multer": "^2.0.2"
+  }
+}

@@ -1,0 +1,3 @@
+customer_id,customer_email,customer_name,subject,description,category,priority,status,assigned_to,tags,source,browser,device_type
+CUS-10,ada@example.com,Ada Lovelace,Cannot log in after 2FA,I cannot log in after enabling 2FA on my account this morning.,account_access,high,new,,login;2fa,web_form,Safari,desktop
+CUS-11,grace@example.com,Grace Hopper,Invoice duplicate charge,Please refund the duplicate invoice payment from last Tuesday.,billing_question,medium,new,,invoice,email,Chrome,desktop

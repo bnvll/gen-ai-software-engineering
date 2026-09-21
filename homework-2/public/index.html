@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support desk</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div>
+      <p class="eyebrow">Homework 2</p>
+      <h1>Support desk</h1>
+    </div>
+    <p class="status" id="banner" hidden></p>
+  </header>
+
+  <main class="layout">
+    <section class="panel" aria-labelledby="list-heading">
+      <div class="panel-head">
+        <h2 id="list-heading">Tickets</h2>
+        <button type="button" id="new-ticket">New ticket</button>
+      </div>
+
+      <form class="filters" id="filters">
+        <label>Category
+          <select name="category">
+            <option value="">Any</option>
+            <option>account_access</option>
+            <option>technical_issue</option>
+            <option>billing_question</option>
+            <option>feature_request</option>
+            <option>bug_report</option>
+            <option>other</option>
+          </select>
+        </label>
+        <label>Priority
+          <select name="priority">
+            <option value="">Any</option>
+            <option>urgent</option>
+            <option>high</option>
+            <option>medium</option>
+            <option>low</option>
+          </select>
+        </label>
+        <label>Status
+          <select name="status">
+            <option value="">Any</option>
+            <option>new</option>
+            <option>in_progress</option>
+            <option>waiting_customer</option>
+            <option>resolved</option>
+            <option>closed</option>
+          </select>
+        </label>
+        <button type="submit">Filter</button>
+      </form>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Customer</th>
+              <th>Category</th>
+              <th>Priority</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="ticket-rows">
+            <tr><td colspan="5">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="detail-heading">
+      <h2 id="detail-heading">Details</h2>
+      <div id="detail">
+        <p class="muted">Select a ticket from the list.</p>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="import-heading">
+      <h2 id="import-heading">Bulk import</h2>
+      <form id="import-form">
+        <label>File (CSV, JSON or XML)
+          <input type="file" name="file" accept=".csv,.json,.xml,text/csv,application/json,application/xml" required />
+        </label>
+        <label class="check">
+          <input type="checkbox" name="auto_classify" checked />
+          Auto-classify imported tickets
+        </label>
+        <button type="submit">Import</button>
+      </form>
+      <pre id="import-result" hidden></pre>
+    </section>
+  </main>
+
+  <dialog id="ticket-dialog">
+    <form id="ticket-form" method="dialog">
+      <h2 id="dialog-title">New ticket</h2>
+      <input type="hidden" name="id" />
+      <label>Customer id <input name="customer_id" required /></label>
+      <label>Customer email <input name="customer_email" type="email" required /></label>
+      <label>Customer name <input name="customer_name" required /></label>
+      <label>Subject <input name="subject" minlength="1" maxlength="200" required /></label>
+      <label>Description <textarea name="description" minlength="10" maxlength="2000" required></textarea></label>
+      <label>Category
+        <select name="category">
+          <option value="">(let classifier decide)</option>
+          <option>account_access</option>
+          <option>technical_issue</option>
+          <option>billing_question</option>
+          <option>feature_request</option>
+          <option>bug_report</option>
+          <option>other</option>
+        </select>
+      </label>
+      <label>Priority
+        <select name="priority">
+          <option value="">(let classifier decide)</option>
+          <option>urgent</option>
+          <option>high</option>
+          <option>medium</option>
+          <option>low</option>
+        </select>
+      </label>
+      <label>Status
+        <select name="status">
+          <option>new</option>
+          <option>in_progress</option>
+          <option>waiting_customer</option>
+          <option>resolved</option>
+          <option>closed</option>
+        </select>
+      </label>
+      <label>Assigned to <input name="assigned_to" /></label>
+      <label>Tags <input name="tags" placeholder="comma separated" /></label>
+      <label class="check" id="auto-classify-row">
+        <input type="checkbox" name="auto_classify" checked />
+        Auto-classify on create
+      </label>
+      <menu>
+        <button type="button" id="dialog-cancel" value="cancel">Cancel</button>
+        <button value="save">Save</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script src="/app.js"></script>
+</body>
+</html>

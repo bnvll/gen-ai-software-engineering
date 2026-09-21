@@ -1,0 +1,3 @@
+customer_id,customer_email,customer_name,subject,description
+CUS-20,ok@example.com,Ok User,Valid row that should import,This description is definitely long enough to pass.
+CUS-21,not-an-email,Bad User,Invalid email should fail,This description is definitely long enough to pass.
