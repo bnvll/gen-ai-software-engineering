@@ -1,0 +1,919 @@
+Banking Transactions API — request/response transcript
+Captured: 2026-09-09T08:43:52Z
+Node:     v24.4.1
+
+Banking Transactions API — sample requests against http://localhost:3200
+
+── Service index (available endpoints)
+$ curl -X GET http://localhost:3200/
+HTTP 200
+{
+  "name": "Banking Transactions API",
+  "version": "1.0.0",
+  "documentation": "docs/api-reference.md",
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/transactions",
+      "description": "Create a transaction"
+    },
+    {
+      "method": "GET",
+      "path": "/transactions",
+      "description": "List transactions (filters: accountId, type, status, currency, from, to)"
+    },
+    {
+      "method": "GET",
+      "path": "/transactions/:id",
+      "description": "Retrieve a transaction"
+    },
+    {
+      "method": "GET",
+      "path": "/transactions/export?format=csv",
+      "description": "Export transactions as CSV"
+    },
+    {
+      "method": "GET",
+      "path": "/accounts/:accountId/balance",
+      "description": "Account balance per currency"
+    },
+    {
+      "method": "GET",
+      "path": "/accounts/:accountId/summary",
+      "description": "Deposits, withdrawals, counts, last activity"
+    },
+    {
+      "method": "GET",
+      "path": "/accounts/:accountId/interest?rate=0.05&days=30",
+      "description": "Simple interest on the current balance"
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "description": "Liveness probe"
+    }
+  ],
+  "enums": {
+    "type": [
+      "deposit",
+      "withdrawal",
+      "transfer"
+    ],
+    "status": [
+      "pending",
+      "completed",
+      "failed"
+    ],
+    "currency": [
+      "AED",
+      "AUD",
+      "BGN",
+      "BHD",
+      "BRL",
+      "CAD",
+      "CHF",
+      "CNY",
+      "CZK",
+      "DKK",
+      "EUR",
+      "GBP",
+      "HKD",
+      "HUF",
+      "IDR",
+      "ILS",
+      "INR",
+      "ISK",
+      "JPY",
+      "KRW",
+      "KWD",
+      "MXN",
+      "MYR",
+      "NOK",
+      "NZD",
+      "PLN",
+      "RON",
+      "SAR",
+      "SEK",
+      "SGD",
+      "THB",
+      "TRY",
+      "USD",
+      "ZAR"
+    ]
+  }
+}
+
+── Health probe
+$ curl -X GET http://localhost:3200/health
+HTTP 200
+{
+  "status": "ok",
+  "uptimeSeconds": 0.5,
+  "transactionCount": 10
+}
+
+═══ Task 1: core endpoints ═══
+
+── Create a transfer
+$ curl -X POST http://localhost:3200/transactions -d '...'
+HTTP 201
+{
+  "id": "ac96de12-55b3-4984-b2aa-819c1afdbec4",
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.5,
+  "currency": "USD",
+  "type": "transfer",
+  "timestamp": "2026-09-09T08:43:53.063Z",
+  "status": "completed"
+}
+
+── Create a deposit (no fromAccount: money enters the ledger)
+$ curl -X POST http://localhost:3200/transactions -d '...'
+HTTP 201
+{
+  "id": "80c72557-35a9-4c62-9554-3772119d30cf",
+  "fromAccount": null,
+  "toAccount": "ACC-12345",
+  "amount": 2500,
+  "currency": "USD",
+  "type": "deposit",
+  "timestamp": "2026-09-09T08:43:53.111Z",
+  "status": "completed"
+}
+
+── Create a withdrawal (no toAccount: money leaves the ledger)
+$ curl -X POST http://localhost:3200/transactions -d '...'
+HTTP 201
+{
+  "id": "5bdbd7af-0d94-44e9-ad02-f9193ac682c7",
+  "fromAccount": "ACC-12345",
+  "toAccount": null,
+  "amount": 99.99,
+  "currency": "USD",
+  "type": "withdrawal",
+  "timestamp": "2026-09-09T08:43:53.158Z",
+  "status": "completed"
+}
+
+── List all transactions (newest first)
+$ curl -X GET http://localhost:3200/transactions
+HTTP 200
+[
+  {
+    "id": "0abb5454-7423-4517-b6f7-19b56c173137",
+    "fromAccount": null,
+    "toAccount": "ACC-A1B2C",
+    "amount": 10,
+    "currency": "EUR",
+    "type": "deposit",
+    "timestamp": "2026-09-09T08:43:53.207Z",
+    "status": "pending"
+  },
+  {
+    "id": "5bdbd7af-0d94-44e9-ad02-f9193ac682c7",
+    "fromAccount": "ACC-12345",
+    "toAccount": null,
+    "amount": 99.99,
+    "currency": "USD",
+    "type": "withdrawal",
+    "timestamp": "2026-09-09T08:43:53.158Z",
+    "status": "completed"
+  },
+  {
+    "id": "80c72557-35a9-4c62-9554-3772119d30cf",
+    "fromAccount": null,
+    "toAccount": "ACC-12345",
+    "amount": 2500,
+    "currency": "USD",
+    "type": "deposit",
+    "timestamp": "2026-09-09T08:43:53.111Z",
+    "status": "completed"
+  },
+  {
+    "id": "ac96de12-55b3-4984-b2aa-819c1afdbec4",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-67890",
+    "amount": 100.5,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2026-09-09T08:43:53.063Z",
+    "status": "completed"
+  },
+  {
+    "id": "726d81a9-769b-45f5-aa90-e2e7df38e9ed",
+    "fromAccount": null,
+    "toAccount": "ACC-12345",
+    "amount": 15000,
+    "currency": "JPY",
+    "type": "deposit",
+    "timestamp": "2024-02-05T06:30:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "dd319d1e-9b16-4378-aa20-acaa1b1f432c",
+    "fromAccount": "ACC-A1B2C",
+    "toAccount": null,
+    "amount": 120.99,
+    "currency": "EUR",
+    "type": "withdrawal",
+    "timestamp": "2024-02-02T12:00:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "53a98171-8858-4d8a-b85b-6935e65b179f",
+    "fromAccount": null,
+    "toAccount": "ACC-A1B2C",
+    "amount": 900,
+    "currency": "EUR",
+    "type": "deposit",
+    "timestamp": "2024-01-25T07:55:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "fb7d8482-a20b-497e-a96a-b6d0d6cfb24e",
+    "fromAccount": "ACC-12345",
+    "toAccount": null,
+    "amount": 40,
+    "currency": "USD",
+    "type": "withdrawal",
+    "timestamp": "2024-01-22T19:10:00.000Z",
+    "status": "failed"
+  },
+  {
+    "id": "49b96974-13ed-41b8-807d-e52577f02db1",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-A1B2C",
+    "amount": 75,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-20T10:30:00.000Z",
+    "status": "pending"
+  },
+  {
+    "id": "1c9d2ef1-178b-449d-928c-c06e41cca299",
+    "fromAccount": "ACC-67890",
+    "toAccount": "ACC-12345",
+    "amount": 300.25,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-14T16:45:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "762a3412-865f-475c-823b-2ff1c9683c10",
+    "fromAccount": null,
+    "toAccount": "ACC-67890",
+    "amount": 1200,
+    "currency": "USD",
+    "type": "deposit",
+    "timestamp": "2024-01-10T11:00:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "0fd33829-b922-49c6-b8d0-5f77509e59a3",
+    "fromAccount": "ACC-12345",
+    "toAccount": null,
+    "amount": 250,
+    "currency": "USD",
+    "type": "withdrawal",
+    "timestamp": "2024-01-08T08:05:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "8733ec14-b3e8-48e2-b330-f8a274a3776f",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-67890",
+    "amount": 100.5,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-05T14:20:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "793e1f3b-5cf8-4276-a95a-0d6b10f0e2cb",
+    "fromAccount": null,
+    "toAccount": "ACC-12345",
+    "amount": 5000,
+    "currency": "USD",
+    "type": "deposit",
+    "timestamp": "2024-01-03T09:15:00.000Z",
+    "status": "completed"
+  }
+]
+
+── Retrieve a single transaction
+$ curl -X GET http://localhost:3200/transactions/0abb5454-7423-4517-b6f7-19b56c173137
+HTTP 200
+{
+  "id": "0abb5454-7423-4517-b6f7-19b56c173137",
+  "fromAccount": null,
+  "toAccount": "ACC-A1B2C",
+  "amount": 10,
+  "currency": "EUR",
+  "type": "deposit",
+  "timestamp": "2026-09-09T08:43:53.207Z",
+  "status": "pending"
+}
+
+── Balance of ACC-12345 (per currency)
+$ curl -X GET http://localhost:3200/accounts/ACC-12345/balance
+HTTP 200
+{
+  "accountId": "ACC-12345",
+  "balances": [
+    {
+      "currency": "JPY",
+      "balance": 15000,
+      "credits": 15000,
+      "debits": 0,
+      "transactionCount": 1
+    },
+    {
+      "currency": "USD",
+      "balance": 7249.26,
+      "credits": 7800.25,
+      "debits": 550.99,
+      "transactionCount": 7
+    }
+  ],
+  "asOf": "2026-09-09T08:43:53.344Z"
+}
+
+── Balance of ACC-12345 in USD only
+$ curl -X GET http://localhost:3200/accounts/ACC-12345/balance?currency=USD
+HTTP 200
+{
+  "accountId": "ACC-12345",
+  "currency": "USD",
+  "balance": 7249.26,
+  "credits": 7800.25,
+  "debits": 550.99,
+  "transactionCount": 7,
+  "asOf": "2026-09-09T08:43:53.389Z"
+}
+
+═══ Task 2: validation ═══
+
+── Every field invalid at once → 400
+$ curl -X POST http://localhost:3200/transactions -d '...'
+HTTP 400
+{
+  "error": "Validation failed",
+  "details": [
+    {
+      "field": "type",
+      "message": "Type must be one of: deposit, withdrawal, transfer"
+    },
+    {
+      "field": "fromAccount",
+      "message": "Account number must match ACC-XXXXX, where X is alphanumeric (e.g. ACC-12345)"
+    },
+    {
+      "field": "currency",
+      "message": "Invalid currency code. Use a supported ISO 4217 code (e.g. USD, EUR, GBP, JPY)"
+    },
+    {
+      "field": "amount",
+      "message": "Amount must be a positive number"
+    }
+  ]
+}
+
+── Amount with 3 decimals → 400
+$ curl -X POST http://localhost:3200/transactions -d '...'
+HTTP 400
+{
+  "error": "Validation failed",
+  "details": [
+    {
+      "field": "amount",
+      "message": "Amount must have at most 2 decimal places"
+    }
+  ]
+}
+
+── 0.50 JPY does not exist → 400
+$ curl -X POST http://localhost:3200/transactions -d '...'
+HTTP 400
+{
+  "error": "Validation failed",
+  "details": [
+    {
+      "field": "amount",
+      "message": "Amount must be a whole number for JPY (JPY has no minor unit)"
+    }
+  ]
+}
+
+── Transfer to the same account → 400
+$ curl -X POST http://localhost:3200/transactions -d '...'
+HTTP 400
+{
+  "error": "Validation failed",
+  "details": [
+    {
+      "field": "toAccount",
+      "message": "toAccount must be different from fromAccount"
+    }
+  ]
+}
+
+── Unknown transaction → 404
+$ curl -X GET http://localhost:3200/transactions/00000000-0000-4000-8000-000000000000
+HTTP 404
+{
+  "error": "Not found",
+  "message": "Transaction 00000000-0000-4000-8000-000000000000 not found"
+}
+
+── Unknown account → 404
+$ curl -X GET http://localhost:3200/accounts/ACC-99999/balance
+HTTP 404
+{
+  "error": "Not found",
+  "message": "Account ACC-99999 not found. No transaction references this account"
+}
+
+── Malformed account number → 400
+$ curl -X GET http://localhost:3200/accounts/12345/balance
+HTTP 400
+{
+  "error": "Validation failed",
+  "details": [
+    {
+      "field": "accountId",
+      "message": "Account number must match ACC-XXXXX, where X is alphanumeric (e.g. ACC-12345)"
+    }
+  ]
+}
+
+── Unknown route → 404
+$ curl -X GET http://localhost:3200/not-a-route
+HTTP 404
+{
+  "error": "Not found",
+  "message": "Route GET /not-a-route does not exist. See GET / for the list of available endpoints"
+}
+
+═══ Task 3: transaction history filters ═══
+
+── By account
+$ curl -X GET http://localhost:3200/transactions?accountId=ACC-12345
+HTTP 200
+[
+  {
+    "id": "5bdbd7af-0d94-44e9-ad02-f9193ac682c7",
+    "fromAccount": "ACC-12345",
+    "toAccount": null,
+    "amount": 99.99,
+    "currency": "USD",
+    "type": "withdrawal",
+    "timestamp": "2026-09-09T08:43:53.158Z",
+    "status": "completed"
+  },
+  {
+    "id": "80c72557-35a9-4c62-9554-3772119d30cf",
+    "fromAccount": null,
+    "toAccount": "ACC-12345",
+    "amount": 2500,
+    "currency": "USD",
+    "type": "deposit",
+    "timestamp": "2026-09-09T08:43:53.111Z",
+    "status": "completed"
+  },
+  {
+    "id": "ac96de12-55b3-4984-b2aa-819c1afdbec4",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-67890",
+    "amount": 100.5,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2026-09-09T08:43:53.063Z",
+    "status": "completed"
+  },
+  {
+    "id": "726d81a9-769b-45f5-aa90-e2e7df38e9ed",
+    "fromAccount": null,
+    "toAccount": "ACC-12345",
+    "amount": 15000,
+    "currency": "JPY",
+    "type": "deposit",
+    "timestamp": "2024-02-05T06:30:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "fb7d8482-a20b-497e-a96a-b6d0d6cfb24e",
+    "fromAccount": "ACC-12345",
+    "toAccount": null,
+    "amount": 40,
+    "currency": "USD",
+    "type": "withdrawal",
+    "timestamp": "2024-01-22T19:10:00.000Z",
+    "status": "failed"
+  },
+  {
+    "id": "49b96974-13ed-41b8-807d-e52577f02db1",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-A1B2C",
+    "amount": 75,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-20T10:30:00.000Z",
+    "status": "pending"
+  },
+  {
+    "id": "1c9d2ef1-178b-449d-928c-c06e41cca299",
+    "fromAccount": "ACC-67890",
+    "toAccount": "ACC-12345",
+    "amount": 300.25,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-14T16:45:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "0fd33829-b922-49c6-b8d0-5f77509e59a3",
+    "fromAccount": "ACC-12345",
+    "toAccount": null,
+    "amount": 250,
+    "currency": "USD",
+    "type": "withdrawal",
+    "timestamp": "2024-01-08T08:05:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "8733ec14-b3e8-48e2-b330-f8a274a3776f",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-67890",
+    "amount": 100.5,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-05T14:20:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "793e1f3b-5cf8-4276-a95a-0d6b10f0e2cb",
+    "fromAccount": null,
+    "toAccount": "ACC-12345",
+    "amount": 5000,
+    "currency": "USD",
+    "type": "deposit",
+    "timestamp": "2024-01-03T09:15:00.000Z",
+    "status": "completed"
+  }
+]
+
+── By type
+$ curl -X GET http://localhost:3200/transactions?type=transfer
+HTTP 200
+[
+  {
+    "id": "ac96de12-55b3-4984-b2aa-819c1afdbec4",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-67890",
+    "amount": 100.5,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2026-09-09T08:43:53.063Z",
+    "status": "completed"
+  },
+  {
+    "id": "49b96974-13ed-41b8-807d-e52577f02db1",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-A1B2C",
+    "amount": 75,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-20T10:30:00.000Z",
+    "status": "pending"
+  },
+  {
+    "id": "1c9d2ef1-178b-449d-928c-c06e41cca299",
+    "fromAccount": "ACC-67890",
+    "toAccount": "ACC-12345",
+    "amount": 300.25,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-14T16:45:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "8733ec14-b3e8-48e2-b330-f8a274a3776f",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-67890",
+    "amount": 100.5,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-05T14:20:00.000Z",
+    "status": "completed"
+  }
+]
+
+── By date range (January 2024, inclusive)
+$ curl -X GET http://localhost:3200/transactions?from=2024-01-01&to=2024-01-31
+HTTP 200
+[
+  {
+    "id": "53a98171-8858-4d8a-b85b-6935e65b179f",
+    "fromAccount": null,
+    "toAccount": "ACC-A1B2C",
+    "amount": 900,
+    "currency": "EUR",
+    "type": "deposit",
+    "timestamp": "2024-01-25T07:55:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "fb7d8482-a20b-497e-a96a-b6d0d6cfb24e",
+    "fromAccount": "ACC-12345",
+    "toAccount": null,
+    "amount": 40,
+    "currency": "USD",
+    "type": "withdrawal",
+    "timestamp": "2024-01-22T19:10:00.000Z",
+    "status": "failed"
+  },
+  {
+    "id": "49b96974-13ed-41b8-807d-e52577f02db1",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-A1B2C",
+    "amount": 75,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-20T10:30:00.000Z",
+    "status": "pending"
+  },
+  {
+    "id": "1c9d2ef1-178b-449d-928c-c06e41cca299",
+    "fromAccount": "ACC-67890",
+    "toAccount": "ACC-12345",
+    "amount": 300.25,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-14T16:45:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "762a3412-865f-475c-823b-2ff1c9683c10",
+    "fromAccount": null,
+    "toAccount": "ACC-67890",
+    "amount": 1200,
+    "currency": "USD",
+    "type": "deposit",
+    "timestamp": "2024-01-10T11:00:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "0fd33829-b922-49c6-b8d0-5f77509e59a3",
+    "fromAccount": "ACC-12345",
+    "toAccount": null,
+    "amount": 250,
+    "currency": "USD",
+    "type": "withdrawal",
+    "timestamp": "2024-01-08T08:05:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "8733ec14-b3e8-48e2-b330-f8a274a3776f",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-67890",
+    "amount": 100.5,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-05T14:20:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "793e1f3b-5cf8-4276-a95a-0d6b10f0e2cb",
+    "fromAccount": null,
+    "toAccount": "ACC-12345",
+    "amount": 5000,
+    "currency": "USD",
+    "type": "deposit",
+    "timestamp": "2024-01-03T09:15:00.000Z",
+    "status": "completed"
+  }
+]
+
+── Combined: account + type + date range
+$ curl -X GET http://localhost:3200/transactions?accountId=ACC-12345&type=transfer&from=2024-01-01&to=2024-01-31
+HTTP 200
+[
+  {
+    "id": "49b96974-13ed-41b8-807d-e52577f02db1",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-A1B2C",
+    "amount": 75,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-20T10:30:00.000Z",
+    "status": "pending"
+  },
+  {
+    "id": "1c9d2ef1-178b-449d-928c-c06e41cca299",
+    "fromAccount": "ACC-67890",
+    "toAccount": "ACC-12345",
+    "amount": 300.25,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-14T16:45:00.000Z",
+    "status": "completed"
+  },
+  {
+    "id": "8733ec14-b3e8-48e2-b330-f8a274a3776f",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-67890",
+    "amount": 100.5,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-05T14:20:00.000Z",
+    "status": "completed"
+  }
+]
+
+── Extra filters: status and currency
+$ curl -X GET http://localhost:3200/transactions?status=pending&currency=USD
+HTTP 200
+[
+  {
+    "id": "49b96974-13ed-41b8-807d-e52577f02db1",
+    "fromAccount": "ACC-12345",
+    "toAccount": "ACC-A1B2C",
+    "amount": 75,
+    "currency": "USD",
+    "type": "transfer",
+    "timestamp": "2024-01-20T10:30:00.000Z",
+    "status": "pending"
+  }
+]
+
+── Invalid filter values → 400
+$ curl -X GET http://localhost:3200/transactions?type=wire&from=15/01/2024
+HTTP 400
+{
+  "error": "Validation failed",
+  "details": [
+    {
+      "field": "type",
+      "message": "type must be one of: deposit, withdrawal, transfer"
+    },
+    {
+      "field": "from",
+      "message": "from must be a date (YYYY-MM-DD) or an ISO 8601 datetime"
+    }
+  ]
+}
+
+═══ Task 4: summary, interest, CSV export, rate limiting ═══
+
+── Account summary
+$ curl -X GET http://localhost:3200/accounts/ACC-12345/summary
+HTTP 200
+{
+  "accountId": "ACC-12345",
+  "transactionCount": 10,
+  "mostRecentTransactionDate": "2026-09-09T08:43:53.158Z",
+  "statusBreakdown": {
+    "completed": 8,
+    "pending": 1,
+    "failed": 1
+  },
+  "totals": [
+    {
+      "currency": "JPY",
+      "totalDeposits": 15000,
+      "totalWithdrawals": 0,
+      "totalTransfersIn": 0,
+      "totalTransfersOut": 0,
+      "netChange": 15000,
+      "transactionCount": 1,
+      "mostRecentTransactionDate": "2024-02-05T06:30:00.000Z"
+    },
+    {
+      "currency": "USD",
+      "totalDeposits": 7500,
+      "totalWithdrawals": 349.99,
+      "totalTransfersIn": 300.25,
+      "totalTransfersOut": 201,
+      "netChange": 7249.26,
+      "transactionCount": 7,
+      "mostRecentTransactionDate": "2026-09-09T08:43:53.158Z"
+    }
+  ],
+  "asOf": "2026-09-09T08:43:54.097Z"
+}
+
+── Account summary (USD only)
+$ curl -X GET http://localhost:3200/accounts/ACC-12345/summary?currency=USD
+HTTP 200
+{
+  "accountId": "ACC-12345",
+  "transactionCount": 10,
+  "mostRecentTransactionDate": "2026-09-09T08:43:53.158Z",
+  "statusBreakdown": {
+    "completed": 8,
+    "pending": 1,
+    "failed": 1
+  },
+  "totals": [
+    {
+      "currency": "USD",
+      "totalDeposits": 7500,
+      "totalWithdrawals": 349.99,
+      "totalTransfersIn": 300.25,
+      "totalTransfersOut": 201,
+      "netChange": 7249.26,
+      "transactionCount": 7,
+      "mostRecentTransactionDate": "2026-09-09T08:43:53.158Z"
+    }
+  ],
+  "asOf": "2026-09-09T08:43:54.142Z"
+}
+
+── Simple interest: 5% for 30 days on the USD balance
+$ curl -X GET http://localhost:3200/accounts/ACC-12345/interest?rate=0.05&days=30&currency=USD
+HTTP 200
+{
+  "accountId": "ACC-12345",
+  "currency": "USD",
+  "principal": 7249.26,
+  "annualRate": 0.05,
+  "days": 30,
+  "dayCountBasis": 365,
+  "interest": 29.79,
+  "projectedBalance": 7279.05,
+  "asOf": "2026-09-09T08:43:54.195Z"
+}
+
+── Interest without ?currency= on a multi-currency account → 400
+$ curl -X GET http://localhost:3200/accounts/ACC-12345/interest?rate=0.05&days=30
+HTTP 400
+{
+  "error": "Bad request",
+  "message": "Account ACC-12345 holds several currencies (JPY, USD). Amounts in different currencies are never summed - pass ?currency= to select one"
+}
+
+── Interest with an invalid rate → 400
+$ curl -X GET http://localhost:3200/accounts/ACC-12345/interest?rate=5&days=30&currency=USD
+HTTP 400
+{
+  "error": "Validation failed",
+  "details": [
+    {
+      "field": "rate",
+      "message": "rate must be a decimal fraction between 0 and 1 (use 0.05 for 5%)"
+    }
+  ]
+}
+
+── CSV export (headers + first rows)
+$ curl -i http://localhost:3200/transactions/export?format=csv
+HTTP/1.1 200 OK
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 67
+X-RateLimit-Reset: 59
+Content-Type: text/csv; charset=utf-8
+Content-Disposition: attachment; filename="transactions-2026-09-09.csv"
+Content-Length: 1549
+ETag: W/"60d-CcbjLOIFPmWbNMWO8fiIs1tm7nI"
+Date: Wed, 09 Sep 2026 08:43:54 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+id,fromAccount,toAccount,amount,currency,type,timestamp,status
+0abb5454-7423-4517-b6f7-19b56c173137,,ACC-A1B2C,10.00,EUR,deposit,2026-09-09T08:43:53.207Z,pending
+5bdbd7af-0d94-44e9-ad02-f9193ac682c7,ACC-12345,,99.99,USD,withdrawal,2026-09-09T08:43:53.158Z,completed
+80c72557-35a9-4c62-9554-3772119d30cf,,ACC-12345,2500.00,USD,deposit,2026-09-09T08:43:53.111Z,completed
+ac96de12-55b3-4984-b2aa-819c1afdbec4,ACC-12345,ACC-67890,100.50,USD,transfer,2026-09-09T08:43:53.063Z,completed
+726d81a9-769b-45f5-aa90-e2e7df38e9ed,,ACC-12345,15000,JPY,deposit,2024-02-05T06:30:00.000Z,completed
+dd319d1e-9b16-4378-aa20-acaa1b1f432c,ACC-A1B2C,,120.99,EUR,withdrawal,2024-02-02T12:00:00.000Z,completed
+53a98171-8858-4d8a-b85b-6935e65b179f,,ACC-A1B2C,900.00,EUR,deposit,2024-01-25T07:55:00.000Z,completed
+
+── CSV export filtered by account
+$ curl "http://localhost:3200/transactions/export?format=csv&accountId=ACC-12345"
+id,fromAccount,toAccount,amount,currency,type,timestamp,status
+5bdbd7af-0d94-44e9-ad02-f9193ac682c7,ACC-12345,,99.99,USD,withdrawal,2026-09-09T08:43:53.158Z,completed
+80c72557-35a9-4c62-9554-3772119d30cf,,ACC-12345,2500.00,USD,deposit,2026-09-09T08:43:53.111Z,completed
+ac96de12-55b3-4984-b2aa-819c1afdbec4,ACC-12345,ACC-67890,100.50,USD,transfer,2026-09-09T08:43:53.063Z,completed
+726d81a9-769b-45f5-aa90-e2e7df38e9ed,,ACC-12345,15000,JPY,deposit,2024-02-05T06:30:00.000Z,completed
+fb7d8482-a20b-497e-a96a-b6d0d6cfb24e,ACC-12345,,40.00,USD,withdrawal,2024-01-22T19:10:00.000Z,failed
+49b96974-13ed-41b8-807d-e52577f02db1,ACC-12345,ACC-A1B2C,75.00,USD,transfer,2024-01-20T10:30:00.000Z,pending
+1c9d2ef1-178b-449d-928c-c06e41cca299,ACC-67890,ACC-12345,300.25,USD,transfer,2024-01-14T16:45:00.000Z,completed
+0fd33829-b922-49c6-b8d0-5f77509e59a3,ACC-12345,,250.00,USD,withdrawal,2024-01-08T08:05:00.000Z,completed
+8733ec14-b3e8-48e2-b330-f8a274a3776f,ACC-12345,ACC-67890,100.50,USD,transfer,2024-01-05T14:20:00.000Z,completed
+793e1f3b-5cf8-4276-a95a-0d6b10f0e2cb,,ACC-12345,5000.00,USD,deposit,2024-01-03T09:15:00.000Z,completed
+
+── Rate limiting
+Skipped: re-run with --rate-limit to fire 105 requests and see the 429 response.
+$ curl -i http://localhost:3200/health   # X-RateLimit-* headers are on every response
+HTTP/1.1 200 OK
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 65
+X-RateLimit-Reset: 59
+Content-Type: application/json; charset=utf-8
+Content-Length: 70
+ETag: W/"46-ByhfBLLAN03B0wgS+H/M8Pr6dzo"
+Date: Wed, 09 Sep 2026 08:43:54 GMT
+
+Done.

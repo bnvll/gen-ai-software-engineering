@@ -1,0 +1,39 @@
+2026-09-09T08:43:52.582Z [info] seeded 10 transactions from demo/sample-data.json
+2026-09-09T08:43:52.586Z [info] Banking Transactions API listening on http://localhost:3200
+2026-09-09T08:43:52.587Z [info] storage: in-memory (10 transactions loaded)
+2026-09-09T08:43:52.587Z [info] rate limit: 100 requests / 60s per IP
+2026-09-09T08:43:52.854Z [info] GET /health 200 3.6ms
+2026-09-09T08:43:52.867Z [info] GET /health 200 0.5ms
+2026-09-09T08:43:52.932Z [info] GET /health 200 0.3ms
+2026-09-09T08:43:52.955Z [info] GET / 200 0.4ms
+2026-09-09T08:43:53.009Z [info] GET /health 200 0.3ms
+2026-09-09T08:43:53.063Z [info] POST /transactions 201 3.7ms
+2026-09-09T08:43:53.111Z [info] POST /transactions 201 0.5ms
+2026-09-09T08:43:53.158Z [info] POST /transactions 201 0.3ms
+2026-09-09T08:43:53.207Z [info] POST /transactions 201 0.4ms
+2026-09-09T08:43:53.243Z [info] GET /transactions 200 1.0ms
+2026-09-09T08:43:53.291Z [info] GET /transactions/0abb5454-7423-4517-b6f7-19b56c173137 200 0.4ms
+2026-09-09T08:43:53.345Z [info] GET /accounts/ACC-12345/balance 200 7.2ms
+2026-09-09T08:43:53.390Z [info] GET /accounts/ACC-12345/balance?currency=USD 200 0.4ms
+2026-09-09T08:43:53.432Z [info] POST /transactions 400 0.6ms
+2026-09-09T08:43:53.476Z [info] POST /transactions 400 0.3ms
+2026-09-09T08:43:53.529Z [info] POST /transactions 400 0.3ms
+2026-09-09T08:43:53.574Z [info] POST /transactions 400 0.3ms
+2026-09-09T08:43:53.617Z [info] GET /transactions/00000000-0000-4000-8000-000000000000 404 0.3ms
+2026-09-09T08:43:53.663Z [info] GET /accounts/ACC-99999/balance 404 0.3ms
+2026-09-09T08:43:53.716Z [info] GET /accounts/12345/balance 400 0.3ms
+2026-09-09T08:43:53.764Z [info] GET /not-a-route 404 0.2ms
+2026-09-09T08:43:53.809Z [info] GET /transactions?accountId=ACC-12345 200 0.2ms
+2026-09-09T08:43:53.859Z [info] GET /transactions?type=transfer 200 0.2ms
+2026-09-09T08:43:53.905Z [info] GET /transactions?from=2024-01-01&to=2024-01-31 200 0.4ms
+2026-09-09T08:43:53.952Z [info] GET /transactions?accountId=ACC-12345&type=transfer&from=2024-01-01&to=2024-01-31 200 0.2ms
+2026-09-09T08:43:53.997Z [info] GET /transactions?status=pending&currency=USD 200 0.2ms
+2026-09-09T08:43:54.048Z [info] GET /transactions?type=wire&from=15/01/2024 400 0.4ms
+2026-09-09T08:43:54.097Z [info] GET /accounts/ACC-12345/summary 200 0.4ms
+2026-09-09T08:43:54.142Z [info] GET /accounts/ACC-12345/summary?currency=USD 200 0.4ms
+2026-09-09T08:43:54.195Z [info] GET /accounts/ACC-12345/interest?rate=0.05&days=30&currency=USD 200 0.4ms
+2026-09-09T08:43:54.246Z [info] GET /accounts/ACC-12345/interest?rate=0.05&days=30 400 0.4ms
+2026-09-09T08:43:54.293Z [info] GET /accounts/ACC-12345/interest?rate=5&days=30&currency=USD 400 0.3ms
+2026-09-09T08:43:54.344Z [info] GET /transactions/export?format=csv 200 0.5ms
+2026-09-09T08:43:54.357Z [info] GET /transactions/export?format=csv&accountId=ACC-12345 200 0.3ms
+2026-09-09T08:43:54.371Z [info] GET /health 200 0.2ms
