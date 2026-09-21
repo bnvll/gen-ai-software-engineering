@@ -7,4 +7,4 @@
 
 Capture UI: start `./demo/run.sh`, import `demo/sample_tickets.csv`, then screenshot the list.
 
-Capture coverage: run `npm run test:coverage` and screenshot the coverage table (or the HTML page in `docs/screenshots/coverage.html`).
+Capture coverage: run `npm run test:coverage` and screenshot the coverage table (or the HTML page in `docs/evidence/coverage.html`).

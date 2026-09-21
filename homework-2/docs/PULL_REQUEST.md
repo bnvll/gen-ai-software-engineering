@@ -86,7 +86,7 @@ Worth calling out:
 | **Classifier: LLM vs keywords** | Keywords — matches `keywords_found`, keeps tests deterministic |
 | **CSV import vs Express JSON parser** | Global JSON middleware skips `POST /tickets/import`; a `text/csv` test pins it |
 | **Port 3000 already in use** | `PORT=3456 ./demo/run.sh` (same pattern as homework 1) |
-| **Coverage screenshot vs terminal reporter** | `docs/screenshots/coverage.html` mirrors the Node coverage table for a readable capture |
+| **Coverage screenshot vs terminal reporter** | `docs/evidence/coverage.html` mirrors the Node coverage table for a readable capture |
 
 ### 🔍 How to verify
 
@@ -127,7 +127,7 @@ _(ui.png)_
 
 **2. Test coverage >85%** (`TASKS.md` deliverable)
 
-_(test_coverage.png)_ — also saved as `docs/screenshots/coverage.html`
+_(test_coverage.png)_ — also saved as `docs/evidence/coverage.html`
 
 **3. AI tool interaction (course README)**
 

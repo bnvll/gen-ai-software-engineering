@@ -94,6 +94,6 @@ describe('integration workflows', () => {
   it('serves the agent UI', async () => {
     const response = await api.get('/');
     assert.equal(response.status, 200);
-    assert.match(String(response.body), /Support desk/);
+    assert.match(String(response.body), /Support Service Desk/);
   });
 });

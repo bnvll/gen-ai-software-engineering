@@ -139,7 +139,7 @@ npm run test:coverage
 
 Expect **57 passing** tests and **>85%** line coverage (last run: **91.27%**).
 
-Coverage screenshot for submission: `docs/screenshots/test_coverage.png` (open `docs/screenshots/coverage.html` in a browser and capture it, or screenshot the terminal table from `npm run test:coverage`).
+Coverage screenshot for submission: `docs/screenshots/test_coverage.png` (open `docs/evidence/coverage.html` in a browser and capture it, or screenshot the terminal table from `npm run test:coverage`).
 
 To load 50 demo tickets into SQLite before opening the UI:
 

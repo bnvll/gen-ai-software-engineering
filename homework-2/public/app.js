@@ -1,3 +1,23 @@
+const THEME_KEY = 'theme';
+const themeToggle = document.getElementById('theme-toggle');
+
+function currentTheme() {
+  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+}
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  localStorage.setItem(THEME_KEY, theme);
+  const next = theme === 'dark' ? 'light' : 'dark';
+  themeToggle.textContent = next === 'dark' ? 'Dark' : 'Light';
+  themeToggle.setAttribute('aria-label', `Switch to ${next} theme`);
+}
+
+applyTheme(currentTheme());
+themeToggle.addEventListener('click', () => {
+  applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+});
+
 const banner = document.getElementById('banner');
 const rows = document.getElementById('ticket-rows');
 const detail = document.getElementById('detail');
