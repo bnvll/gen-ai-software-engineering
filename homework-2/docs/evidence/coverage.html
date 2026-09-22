@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Test coverage — Support Service Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;display=swap" />
+  <script>
+    (function () {
+      const stored = localStorage.getItem('theme');
+      const theme = stored === 'dark' || stored === 'light'
+        ? stored
+        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f5f0;
+      --ink: #19242a;
+      --muted: #6b787e;
+      --card: #ffffff;
+      --line: #ddddd5;
+      --accent: #e7ff53;
+      --accent-ink: #19242a;
+      --ok: #0d9488;
+      --ok-bg: #d4e3e3;
+      --row-hover: #d4e3e3;
+      --shadow: 0 1px 2px rgba(25, 36, 42, 0.06), 0 8px 24px -12px rgba(25, 36, 42, 0.16);
+      font-family: "Geist", "Pangea", ui-sans-serif, system-ui, sans-serif;
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #19242a;
+      --ink: #f5f5f0;
+      --muted: #94a5aa;
+      --card: #1f2c33;
+      --line: #33434b;
+      --ok: #14b8a6;
+      --ok-bg: #1a3336;
+      --row-hover: #263640;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem 0.5rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .theme-toggle {
+      font: inherit;
+      font-weight: 500;
+      color: var(--ink);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.45rem 0.55rem;
+      cursor: pointer;
+    }
+
+    .layout { padding: 1rem 1.5rem 2rem; }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .lede {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .table-wrap { overflow: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 0.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    tbody tr:hover { background: var(--row-hover); }
+
+    .ok { color: var(--ok); font-weight: 600; }
+
+    .banner {
+      margin: 1rem 0 0;
+      padding: 0.4rem 0.7rem;
+      border-radius: 6px;
+      background: var(--ok-bg);
+      color: var(--ok);
+      display: inline-block;
+    }
+
+    @media (max-width: 900px) {
+      .top { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <h1>Support Service Desk</h1>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark theme">Dark</button>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <p class="lede">npm run test:coverage · 56 tests, 56 passing · Node 24.4.1 · 21 September 2026</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>File</th><th>Line %</th><th>Branch %</th><th>Funcs %</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>src/app.js</td><td>100.00</td><td>100.00</td><td>100.00</td></tr>
+            <tr><td>src/services/classifier.js</td><td>100.00</td><td>100.00</td><td>100.00</td></tr>
+            <tr><td>src/utils/errors.js</td><td>100.00</td><td>100.00</td><td>100.00</td></tr>
+            <tr><td>src/stores/ticketStore.js</td><td>98.92</td><td>84.75</td><td>100.00</td></tr>
+            <tr><td>src/routes/tickets.js</td><td>96.92</td><td>89.66</td><td>100.00</td></tr>
+            <tr><td>src/db.js</td><td>96.72</td><td>66.67</td><td>100.00</td></tr>
+            <tr><td>src/services/importer.js</td><td>92.21</td><td>87.50</td><td>100.00</td></tr>
+            <tr><td>src/models/ticket.js</td><td>87.63</td><td>88.24</td><td>100.00</td></tr>
+            <tr><td>src/validators/ticketValidator.js</td><td>80.17</td><td>62.26</td><td>87.50</td></tr>
+            <tr><td><strong>all files</strong></td><td class="ok">91.27</td><td>82.01</td><td>91.67</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="banner">Line coverage 91.27% (requirement &gt; 85%).</p>
+    </section>
+  </main>
+
+  <script>
+    const THEME_KEY = 'theme';
+    const themeToggle = document.getElementById('theme-toggle');
+
+    function currentTheme() {
+      return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      localStorage.setItem(THEME_KEY, theme);
+      const next = theme === 'dark' ? 'light' : 'dark';
+      themeToggle.textContent = next === 'dark' ? 'Dark' : 'Light';
+      themeToggle.setAttribute('aria-label', `Switch to ${next} theme`);
+    }
+
+    applyTheme(currentTheme());
+    themeToggle.addEventListener('click', () => {
+      applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,512 @@
+<tickets>
+  <ticket>
+    <customer_id>CUS-0071</customer_id>
+    <customer_email>customer71@example.com</customer_email>
+    <customer_name>Customer 71</customer_name>
+    <subject>Cannot log in after password reset (71)</subject>
+    <description>I cannot access my account. The login form rejects the new password and 2FA codes. Ticket number 71 for the sample dataset.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <status>in_progress</status>
+    <assigned_to></assigned_to>
+    <tags><tag>account_access</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>email</source>
+    <browser>Firefox</browser>
+    <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0072</customer_id>
+    <customer_email>customer72@example.com</customer_email>
+    <customer_name>Customer 72</customer_name>
+    <subject>Production down for checkout (72)</subject>
+    <description>Checkout is production down. This is critical and customers cannot complete payment. Ticket number 72 for the sample dataset.</description>
+    <category>technical_issue</category>
+    <priority>urgent</priority>
+    <status>waiting_customer</status>
+    <assigned_to>simone</assigned_to>
+    <tags><tag>technical_issue</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>api</source>
+    <browser>Chrome</browser>
+    <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0073</customer_id>
+    <customer_email>customer73@example.com</customer_email>
+    <customer_name>Customer 73</customer_name>
+    <subject>Security warning on login page (73)</subject>
+    <description>Browser shows a security certificate warning when we try to sign in. Ticket number 73 for the sample dataset.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <status>resolved</status>
+    <assigned_to></assigned_to>
+    <tags><tag>account_access</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>chat</source>
+    <browser>Safari</browser>
+    <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0074</customer_id>
+    <customer_email>customer74@example.com</customer_email>
+    <customer_name>Customer 74</customer_name>
+    <subject>App crash when exporting CSV (74)</subject>
+    <description>The desktop app crash throws an exception and a stack trace during export. Ticket number 74 for the sample dataset.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <status>closed</status>
+    <assigned_to></assigned_to>
+    <tags><tag>technical_issue</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>phone</source>
+    <browser>Firefox</browser>
+    <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0075</customer_id>
+    <customer_email>customer75@example.com</customer_email>
+    <customer_name>Customer 75</customer_name>
+    <subject>Refund for duplicate invoice (75)</subject>
+    <description>Please refund the duplicate invoice payment from last week. Billing charged twice. Ticket number 75 for the sample dataset.</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <status>new</status>
+    <assigned_to>simone</assigned_to>
+    <tags><tag>billing_question</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>web_form</source>
+    <browser>Chrome</browser>
+    <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0076</customer_id>
+    <customer_email>customer76@example.com</customer_email>
+    <customer_name>Customer 76</customer_name>
+    <subject>Feature request for dark mode (76)</subject>
+    <description>It would be nice to have a dark mode. This enhancement is a suggestion from the design team. Ticket number 76 for the sample dataset.</description>
+    <category>feature_request</category>
+    <priority>low</priority>
+    <status>in_progress</status>
+    <assigned_to></assigned_to>
+    <tags><tag>feature_request</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>email</source>
+    <browser>Safari</browser>
+    <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0077</customer_id>
+    <customer_email>customer77@example.com</customer_email>
+    <customer_name>Customer 77</customer_name>
+    <subject>Bug in notification badge (77)</subject>
+    <description>Unexpected behavior on the badge count. Steps to reproduce: open inbox, mark one read. Ticket number 77 for the sample dataset.</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <status>waiting_customer</status>
+    <assigned_to></assigned_to>
+    <tags><tag>bug_report</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>api</source>
+    <browser>Firefox</browser>
+    <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0078</customer_id>
+    <customer_email>customer78@example.com</customer_email>
+    <customer_name>Customer 78</customer_name>
+    <subject>Minor cosmetic alignment (78)</subject>
+    <description>A minor cosmetic issue on the settings page. Suggestion only, not blocking. Ticket number 78 for the sample dataset.</description>
+    <category>other</category>
+    <priority>low</priority>
+    <status>resolved</status>
+    <assigned_to>simone</assigned_to>
+    <tags><tag>other</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>chat</source>
+    <browser>Chrome</browser>
+    <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0079</customer_id>
+    <customer_email>customer79@example.com</customer_email>
+    <customer_name>Customer 79</customer_name>
+    <subject>Subscription renewal question (79)</subject>
+    <description>When will my subscription renew and will the credit card on file be charged automatically? Ticket number 79 for the sample dataset.</description>
+    <category>billing_question</category>
+    <priority>medium</priority>
+    <status>closed</status>
+    <assigned_to></assigned_to>
+    <tags><tag>billing_question</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>phone</source>
+    <browser>Safari</browser>
+    <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0080</customer_id>
+    <customer_email>customer80@example.com</customer_email>
+    <customer_name>Customer 80</customer_name>
+    <subject>Timeout calling the reports API (80)</subject>
+    <description>Reports endpoint returns a timeout error and is not working for large date ranges. Ticket number 80 for the sample dataset.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <status>new</status>
+    <assigned_to></assigned_to>
+    <tags><tag>technical_issue</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>web_form</source>
+    <browser>Firefox</browser>
+    <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0081</customer_id>
+    <customer_email>customer81@example.com</customer_email>
+    <customer_name>Customer 81</customer_name>
+    <subject>Cannot log in after password reset (81)</subject>
+    <description>I cannot access my account. The login form rejects the new password and 2FA codes. Ticket number 81 for the sample dataset.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <status>in_progress</status>
+    <assigned_to>simone</assigned_to>
+    <tags><tag>account_access</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>email</source>
+    <browser>Chrome</browser>
+    <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0082</customer_id>
+    <customer_email>customer82@example.com</customer_email>
+    <customer_name>Customer 82</customer_name>
+    <subject>Production down for checkout (82)</subject>
+    <description>Checkout is production down. This is critical and customers cannot complete payment. Ticket number 82 for the sample dataset.</description>
+    <category>technical_issue</category>
+    <priority>urgent</priority>
+    <status>waiting_customer</status>
+    <assigned_to></assigned_to>
+    <tags><tag>technical_issue</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>api</source>
+    <browser>Safari</browser>
+    <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0083</customer_id>
+    <customer_email>customer83@example.com</customer_email>
+    <customer_name>Customer 83</customer_name>
+    <subject>Security warning on login page (83)</subject>
+    <description>Browser shows a security certificate warning when we try to sign in. Ticket number 83 for the sample dataset.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <status>resolved</status>
+    <assigned_to></assigned_to>
+    <tags><tag>account_access</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>chat</source>
+    <browser>Firefox</browser>
+    <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0084</customer_id>
+    <customer_email>customer84@example.com</customer_email>
+    <customer_name>Customer 84</customer_name>
+    <subject>App crash when exporting CSV (84)</subject>
+    <description>The desktop app crash throws an exception and a stack trace during export. Ticket number 84 for the sample dataset.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <status>closed</status>
+    <assigned_to>simone</assigned_to>
+    <tags><tag>technical_issue</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>phone</source>
+    <browser>Chrome</browser>
+    <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0085</customer_id>
+    <customer_email>customer85@example.com</customer_email>
+    <customer_name>Customer 85</customer_name>
+    <subject>Refund for duplicate invoice (85)</subject>
+    <description>Please refund the duplicate invoice payment from last week. Billing charged twice. Ticket number 85 for the sample dataset.</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <status>new</status>
+    <assigned_to></assigned_to>
+    <tags><tag>billing_question</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>web_form</source>
+    <browser>Safari</browser>
+    <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0086</customer_id>
+    <customer_email>customer86@example.com</customer_email>
+    <customer_name>Customer 86</customer_name>
+    <subject>Feature request for dark mode (86)</subject>
+    <description>It would be nice to have a dark mode. This enhancement is a suggestion from the design team. Ticket number 86 for the sample dataset.</description>
+    <category>feature_request</category>
+    <priority>low</priority>
+    <status>in_progress</status>
+    <assigned_to></assigned_to>
+    <tags><tag>feature_request</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>email</source>
+    <browser>Firefox</browser>
+    <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0087</customer_id>
+    <customer_email>customer87@example.com</customer_email>
+    <customer_name>Customer 87</customer_name>
+    <subject>Bug in notification badge (87)</subject>
+    <description>Unexpected behavior on the badge count. Steps to reproduce: open inbox, mark one read. Ticket number 87 for the sample dataset.</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <status>waiting_customer</status>
+    <assigned_to>simone</assigned_to>
+    <tags><tag>bug_report</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>api</source>
+    <browser>Chrome</browser>
+    <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0088</customer_id>
+    <customer_email>customer88@example.com</customer_email>
+    <customer_name>Customer 88</customer_name>
+    <subject>Minor cosmetic alignment (88)</subject>
+    <description>A minor cosmetic issue on the settings page. Suggestion only, not blocking. Ticket number 88 for the sample dataset.</description>
+    <category>other</category>
+    <priority>low</priority>
+    <status>resolved</status>
+    <assigned_to></assigned_to>
+    <tags><tag>other</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>chat</source>
+    <browser>Safari</browser>
+    <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0089</customer_id>
+    <customer_email>customer89@example.com</customer_email>
+    <customer_name>Customer 89</customer_name>
+    <subject>Subscription renewal question (89)</subject>
+    <description>When will my subscription renew and will the credit card on file be charged automatically? Ticket number 89 for the sample dataset.</description>
+    <category>billing_question</category>
+    <priority>medium</priority>
+    <status>closed</status>
+    <assigned_to></assigned_to>
+    <tags><tag>billing_question</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>phone</source>
+    <browser>Firefox</browser>
+    <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0090</customer_id>
+    <customer_email>customer90@example.com</customer_email>
+    <customer_name>Customer 90</customer_name>
+    <subject>Timeout calling the reports API (90)</subject>
+    <description>Reports endpoint returns a timeout error and is not working for large date ranges. Ticket number 90 for the sample dataset.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <status>new</status>
+    <assigned_to>simone</assigned_to>
+    <tags><tag>technical_issue</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>web_form</source>
+    <browser>Chrome</browser>
+    <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0091</customer_id>
+    <customer_email>customer91@example.com</customer_email>
+    <customer_name>Customer 91</customer_name>
+    <subject>Cannot log in after password reset (91)</subject>
+    <description>I cannot access my account. The login form rejects the new password and 2FA codes. Ticket number 91 for the sample dataset.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <status>in_progress</status>
+    <assigned_to></assigned_to>
+    <tags><tag>account_access</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>email</source>
+    <browser>Safari</browser>
+    <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0092</customer_id>
+    <customer_email>customer92@example.com</customer_email>
+    <customer_name>Customer 92</customer_name>
+    <subject>Production down for checkout (92)</subject>
+    <description>Checkout is production down. This is critical and customers cannot complete payment. Ticket number 92 for the sample dataset.</description>
+    <category>technical_issue</category>
+    <priority>urgent</priority>
+    <status>waiting_customer</status>
+    <assigned_to></assigned_to>
+    <tags><tag>technical_issue</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>api</source>
+    <browser>Firefox</browser>
+    <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0093</customer_id>
+    <customer_email>customer93@example.com</customer_email>
+    <customer_name>Customer 93</customer_name>
+    <subject>Security warning on login page (93)</subject>
+    <description>Browser shows a security certificate warning when we try to sign in. Ticket number 93 for the sample dataset.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <status>resolved</status>
+    <assigned_to>simone</assigned_to>
+    <tags><tag>account_access</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>chat</source>
+    <browser>Chrome</browser>
+    <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0094</customer_id>
+    <customer_email>customer94@example.com</customer_email>
+    <customer_name>Customer 94</customer_name>
+    <subject>App crash when exporting CSV (94)</subject>
+    <description>The desktop app crash throws an exception and a stack trace during export. Ticket number 94 for the sample dataset.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <status>closed</status>
+    <assigned_to></assigned_to>
+    <tags><tag>technical_issue</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>phone</source>
+    <browser>Safari</browser>
+    <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0095</customer_id>
+    <customer_email>customer95@example.com</customer_email>
+    <customer_name>Customer 95</customer_name>
+    <subject>Refund for duplicate invoice (95)</subject>
+    <description>Please refund the duplicate invoice payment from last week. Billing charged twice. Ticket number 95 for the sample dataset.</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <status>new</status>
+    <assigned_to></assigned_to>
+    <tags><tag>billing_question</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>web_form</source>
+    <browser>Firefox</browser>
+    <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0096</customer_id>
+    <customer_email>customer96@example.com</customer_email>
+    <customer_name>Customer 96</customer_name>
+    <subject>Feature request for dark mode (96)</subject>
+    <description>It would be nice to have a dark mode. This enhancement is a suggestion from the design team. Ticket number 96 for the sample dataset.</description>
+    <category>feature_request</category>
+    <priority>low</priority>
+    <status>in_progress</status>
+    <assigned_to>simone</assigned_to>
+    <tags><tag>feature_request</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>email</source>
+    <browser>Chrome</browser>
+    <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0097</customer_id>
+    <customer_email>customer97@example.com</customer_email>
+    <customer_name>Customer 97</customer_name>
+    <subject>Bug in notification badge (97)</subject>
+    <description>Unexpected behavior on the badge count. Steps to reproduce: open inbox, mark one read. Ticket number 97 for the sample dataset.</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <status>waiting_customer</status>
+    <assigned_to></assigned_to>
+    <tags><tag>bug_report</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>api</source>
+    <browser>Safari</browser>
+    <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0098</customer_id>
+    <customer_email>customer98@example.com</customer_email>
+    <customer_name>Customer 98</customer_name>
+    <subject>Minor cosmetic alignment (98)</subject>
+    <description>A minor cosmetic issue on the settings page. Suggestion only, not blocking. Ticket number 98 for the sample dataset.</description>
+    <category>other</category>
+    <priority>low</priority>
+    <status>resolved</status>
+    <assigned_to></assigned_to>
+    <tags><tag>other</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>chat</source>
+    <browser>Firefox</browser>
+    <device_type>tablet</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0099</customer_id>
+    <customer_email>customer99@example.com</customer_email>
+    <customer_name>Customer 99</customer_name>
+    <subject>Subscription renewal question (99)</subject>
+    <description>When will my subscription renew and will the credit card on file be charged automatically? Ticket number 99 for the sample dataset.</description>
+    <category>billing_question</category>
+    <priority>medium</priority>
+    <status>closed</status>
+    <assigned_to>simone</assigned_to>
+    <tags><tag>billing_question</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>phone</source>
+    <browser>Chrome</browser>
+    <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-0100</customer_id>
+    <customer_email>customer100@example.com</customer_email>
+    <customer_name>Customer 100</customer_name>
+    <subject>Timeout calling the reports API (100)</subject>
+    <description>Reports endpoint returns a timeout error and is not working for large date ranges. Ticket number 100 for the sample dataset.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <status>new</status>
+    <assigned_to></assigned_to>
+    <tags><tag>technical_issue</tag><tag>sample</tag></tags>
+    <metadata>
+    <source>web_form</source>
+    <browser>Safari</browser>
+    <device_type>mobile</device_type>
+    </metadata>
+  </ticket>
+</tickets>

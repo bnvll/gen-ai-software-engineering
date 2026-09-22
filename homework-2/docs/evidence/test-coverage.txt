@@ -1,0 +1,21 @@
+npm run test:coverage — 21 September 2026, Node v24.4.1
+
+56 tests, 56 passing
+
+file                         line %   branch %   funcs %
+src/app.js                   100.00    100.00    100.00
+src/db.js                     96.72     66.67    100.00
+src/middleware/errorHandler.js 58.54    22.22    100.00
+src/middleware/notFoundHandler.js 54.55 100.00     0.00
+src/middleware/requestLogger.js 56.25    66.67     50.00
+src/models/ticket.js          87.63     88.24    100.00
+src/routes/tickets.js         96.92     89.66    100.00
+src/services/classifier.js   100.00    100.00    100.00
+src/services/importer.js      92.21     87.50    100.00
+src/stores/ticketStore.js     98.92     84.75    100.00
+src/utils/errors.js          100.00    100.00    100.00
+src/utils/logger.js           64.71    100.00     20.00
+src/validators/ticketValidator.js 80.17  62.26     87.50
+all files                     91.27     82.01     91.67
+
+Requirement: overall >85% line coverage. Met.

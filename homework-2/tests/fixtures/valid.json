@@ -1,0 +1,16 @@
+[
+  {
+    "customer_id": "CUS-30",
+    "customer_email": "json1@example.com",
+    "customer_name": "Json One",
+    "subject": "JSON import ticket one",
+    "description": "This JSON ticket description is long enough to be valid."
+  },
+  {
+    "customer_id": "CUS-31",
+    "customer_email": "json2@example.com",
+    "customer_name": "Json Two",
+    "subject": "JSON import ticket two",
+    "description": "Second JSON ticket description is also long enough here."
+  }
+]

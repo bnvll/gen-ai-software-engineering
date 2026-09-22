@@ -1,0 +1,21 @@
+<tickets>
+  <ticket>
+    <customer_id>CUS-40</customer_id>
+    <customer_email>xml1@example.com</customer_email>
+    <customer_name>Xml One</customer_name>
+    <subject>XML import ticket one</subject>
+    <description>This XML ticket description is long enough to be valid.</description>
+    <tags><tag>xml</tag></tags>
+    <metadata>
+      <source>api</source>
+      <device_type>desktop</device_type>
+    </metadata>
+  </ticket>
+  <ticket>
+    <customer_id>CUS-41</customer_id>
+    <customer_email>xml2@example.com</customer_email>
+    <customer_name>Xml Two</customer_name>
+    <subject>XML import ticket two</subject>
+    <description>Second XML ticket description is also long enough here.</description>
+  </ticket>
+</tickets>

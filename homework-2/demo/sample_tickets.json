@@ -1,0 +1,402 @@
+[
+  {
+    "customer_id": "CUS-0051",
+    "customer_email": "customer51@example.com",
+    "customer_name": "Customer 51",
+    "subject": "Cannot log in after password reset (51)",
+    "description": "I cannot access my account. The login form rejects the new password and 2FA codes. Ticket number 51 for the sample dataset.",
+    "category": "account_access",
+    "priority": "urgent",
+    "status": "in_progress",
+    "assigned_to": "simone",
+    "tags": [
+      "account_access",
+      "sample"
+    ],
+    "metadata": {
+      "source": "email",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUS-0052",
+    "customer_email": "customer52@example.com",
+    "customer_name": "Customer 52",
+    "subject": "Production down for checkout (52)",
+    "description": "Checkout is production down. This is critical and customers cannot complete payment. Ticket number 52 for the sample dataset.",
+    "category": "technical_issue",
+    "priority": "urgent",
+    "status": "waiting_customer",
+    "assigned_to": null,
+    "tags": [
+      "technical_issue",
+      "sample"
+    ],
+    "metadata": {
+      "source": "api",
+      "browser": "Safari",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUS-0053",
+    "customer_email": "customer53@example.com",
+    "customer_name": "Customer 53",
+    "subject": "Security warning on login page (53)",
+    "description": "Browser shows a security certificate warning when we try to sign in. Ticket number 53 for the sample dataset.",
+    "category": "account_access",
+    "priority": "urgent",
+    "status": "resolved",
+    "assigned_to": null,
+    "tags": [
+      "account_access",
+      "sample"
+    ],
+    "metadata": {
+      "source": "chat",
+      "browser": "Firefox",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUS-0054",
+    "customer_email": "customer54@example.com",
+    "customer_name": "Customer 54",
+    "subject": "App crash when exporting CSV (54)",
+    "description": "The desktop app crash throws an exception and a stack trace during export. Ticket number 54 for the sample dataset.",
+    "category": "technical_issue",
+    "priority": "high",
+    "status": "closed",
+    "assigned_to": "simone",
+    "tags": [
+      "technical_issue",
+      "sample"
+    ],
+    "metadata": {
+      "source": "phone",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUS-0055",
+    "customer_email": "customer55@example.com",
+    "customer_name": "Customer 55",
+    "subject": "Refund for duplicate invoice (55)",
+    "description": "Please refund the duplicate invoice payment from last week. Billing charged twice. Ticket number 55 for the sample dataset.",
+    "category": "billing_question",
+    "priority": "high",
+    "status": "new",
+    "assigned_to": null,
+    "tags": [
+      "billing_question",
+      "sample"
+    ],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Safari",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUS-0056",
+    "customer_email": "customer56@example.com",
+    "customer_name": "Customer 56",
+    "subject": "Feature request for dark mode (56)",
+    "description": "It would be nice to have a dark mode. This enhancement is a suggestion from the design team. Ticket number 56 for the sample dataset.",
+    "category": "feature_request",
+    "priority": "low",
+    "status": "in_progress",
+    "assigned_to": null,
+    "tags": [
+      "feature_request",
+      "sample"
+    ],
+    "metadata": {
+      "source": "email",
+      "browser": "Firefox",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUS-0057",
+    "customer_email": "customer57@example.com",
+    "customer_name": "Customer 57",
+    "subject": "Bug in notification badge (57)",
+    "description": "Unexpected behavior on the badge count. Steps to reproduce: open inbox, mark one read. Ticket number 57 for the sample dataset.",
+    "category": "bug_report",
+    "priority": "medium",
+    "status": "waiting_customer",
+    "assigned_to": "simone",
+    "tags": [
+      "bug_report",
+      "sample"
+    ],
+    "metadata": {
+      "source": "api",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUS-0058",
+    "customer_email": "customer58@example.com",
+    "customer_name": "Customer 58",
+    "subject": "Minor cosmetic alignment (58)",
+    "description": "A minor cosmetic issue on the settings page. Suggestion only, not blocking. Ticket number 58 for the sample dataset.",
+    "category": "other",
+    "priority": "low",
+    "status": "resolved",
+    "assigned_to": null,
+    "tags": [
+      "other",
+      "sample"
+    ],
+    "metadata": {
+      "source": "chat",
+      "browser": "Safari",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUS-0059",
+    "customer_email": "customer59@example.com",
+    "customer_name": "Customer 59",
+    "subject": "Subscription renewal question (59)",
+    "description": "When will my subscription renew and will the credit card on file be charged automatically? Ticket number 59 for the sample dataset.",
+    "category": "billing_question",
+    "priority": "medium",
+    "status": "closed",
+    "assigned_to": null,
+    "tags": [
+      "billing_question",
+      "sample"
+    ],
+    "metadata": {
+      "source": "phone",
+      "browser": "Firefox",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUS-0060",
+    "customer_email": "customer60@example.com",
+    "customer_name": "Customer 60",
+    "subject": "Timeout calling the reports API (60)",
+    "description": "Reports endpoint returns a timeout error and is not working for large date ranges. Ticket number 60 for the sample dataset.",
+    "category": "technical_issue",
+    "priority": "high",
+    "status": "new",
+    "assigned_to": "simone",
+    "tags": [
+      "technical_issue",
+      "sample"
+    ],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUS-0061",
+    "customer_email": "customer61@example.com",
+    "customer_name": "Customer 61",
+    "subject": "Cannot log in after password reset (61)",
+    "description": "I cannot access my account. The login form rejects the new password and 2FA codes. Ticket number 61 for the sample dataset.",
+    "category": "account_access",
+    "priority": "urgent",
+    "status": "in_progress",
+    "assigned_to": null,
+    "tags": [
+      "account_access",
+      "sample"
+    ],
+    "metadata": {
+      "source": "email",
+      "browser": "Safari",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUS-0062",
+    "customer_email": "customer62@example.com",
+    "customer_name": "Customer 62",
+    "subject": "Production down for checkout (62)",
+    "description": "Checkout is production down. This is critical and customers cannot complete payment. Ticket number 62 for the sample dataset.",
+    "category": "technical_issue",
+    "priority": "urgent",
+    "status": "waiting_customer",
+    "assigned_to": null,
+    "tags": [
+      "technical_issue",
+      "sample"
+    ],
+    "metadata": {
+      "source": "api",
+      "browser": "Firefox",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUS-0063",
+    "customer_email": "customer63@example.com",
+    "customer_name": "Customer 63",
+    "subject": "Security warning on login page (63)",
+    "description": "Browser shows a security certificate warning when we try to sign in. Ticket number 63 for the sample dataset.",
+    "category": "account_access",
+    "priority": "urgent",
+    "status": "resolved",
+    "assigned_to": "simone",
+    "tags": [
+      "account_access",
+      "sample"
+    ],
+    "metadata": {
+      "source": "chat",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUS-0064",
+    "customer_email": "customer64@example.com",
+    "customer_name": "Customer 64",
+    "subject": "App crash when exporting CSV (64)",
+    "description": "The desktop app crash throws an exception and a stack trace during export. Ticket number 64 for the sample dataset.",
+    "category": "technical_issue",
+    "priority": "high",
+    "status": "closed",
+    "assigned_to": null,
+    "tags": [
+      "technical_issue",
+      "sample"
+    ],
+    "metadata": {
+      "source": "phone",
+      "browser": "Safari",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUS-0065",
+    "customer_email": "customer65@example.com",
+    "customer_name": "Customer 65",
+    "subject": "Refund for duplicate invoice (65)",
+    "description": "Please refund the duplicate invoice payment from last week. Billing charged twice. Ticket number 65 for the sample dataset.",
+    "category": "billing_question",
+    "priority": "high",
+    "status": "new",
+    "assigned_to": null,
+    "tags": [
+      "billing_question",
+      "sample"
+    ],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Firefox",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUS-0066",
+    "customer_email": "customer66@example.com",
+    "customer_name": "Customer 66",
+    "subject": "Feature request for dark mode (66)",
+    "description": "It would be nice to have a dark mode. This enhancement is a suggestion from the design team. Ticket number 66 for the sample dataset.",
+    "category": "feature_request",
+    "priority": "low",
+    "status": "in_progress",
+    "assigned_to": "simone",
+    "tags": [
+      "feature_request",
+      "sample"
+    ],
+    "metadata": {
+      "source": "email",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUS-0067",
+    "customer_email": "customer67@example.com",
+    "customer_name": "Customer 67",
+    "subject": "Bug in notification badge (67)",
+    "description": "Unexpected behavior on the badge count. Steps to reproduce: open inbox, mark one read. Ticket number 67 for the sample dataset.",
+    "category": "bug_report",
+    "priority": "medium",
+    "status": "waiting_customer",
+    "assigned_to": null,
+    "tags": [
+      "bug_report",
+      "sample"
+    ],
+    "metadata": {
+      "source": "api",
+      "browser": "Safari",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "CUS-0068",
+    "customer_email": "customer68@example.com",
+    "customer_name": "Customer 68",
+    "subject": "Minor cosmetic alignment (68)",
+    "description": "A minor cosmetic issue on the settings page. Suggestion only, not blocking. Ticket number 68 for the sample dataset.",
+    "category": "other",
+    "priority": "low",
+    "status": "resolved",
+    "assigned_to": null,
+    "tags": [
+      "other",
+      "sample"
+    ],
+    "metadata": {
+      "source": "chat",
+      "browser": "Firefox",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "CUS-0069",
+    "customer_email": "customer69@example.com",
+    "customer_name": "Customer 69",
+    "subject": "Subscription renewal question (69)",
+    "description": "When will my subscription renew and will the credit card on file be charged automatically? Ticket number 69 for the sample dataset.",
+    "category": "billing_question",
+    "priority": "medium",
+    "status": "closed",
+    "assigned_to": "simone",
+    "tags": [
+      "billing_question",
+      "sample"
+    ],
+    "metadata": {
+      "source": "phone",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "CUS-0070",
+    "customer_email": "customer70@example.com",
+    "customer_name": "Customer 70",
+    "subject": "Timeout calling the reports API (70)",
+    "description": "Reports endpoint returns a timeout error and is not working for large date ranges. Ticket number 70 for the sample dataset.",
+    "category": "technical_issue",
+    "priority": "high",
+    "status": "new",
+    "assigned_to": null,
+    "tags": [
+      "technical_issue",
+      "sample"
+    ],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Safari",
+      "device_type": "mobile"
+    }
+  }
+]
