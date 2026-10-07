@@ -1,0 +1,16 @@
+---
+description: Implementation shape for the virtual-card service once code exists
+globs: services/virtual-cards/**/*.ts
+alwaysApply: false
+---
+
+# Virtual-card implementation
+
+- Keep the task file names (`issueCard.ts`, `decideAuthorization.ts`, `redact.ts`).
+- Use cases depend on ports. No Fastify or `pg` imports under `src/application/` or `src/domain/`.
+- HTTP handlers parse, authorize, call one use case, and map `problem+json`. No limit math in routes.
+- Authorization decisions lock the card row and commit the decision and the meter together.
+- Read card state and transaction lists from the primary. Do not cache freeze flags.
+- Redis is for cardholder/staff rate limits only. `decideAuthorization` must not call it.
+- Run log values through `redact` before they hit the sink.
+- A failing test that quotes the spec is fixed in production code, not by deleting the case.
