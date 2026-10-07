@@ -1,0 +1,18 @@
+---
+description: FinTech safety defaults for the Harbor virtual-card specification
+alwaysApply: true
+---
+
+# FinTech safety defaults
+
+The contract is `homework-3/specification.md`. Follow it over general banking habits.
+
+- Money is `bigint` cents. JSON amounts are canonical two-decimal strings. No binary floats.
+- Never persist or log PAN, CVV, CVC, track, or PIN. Store the issuer token and `last4` only.
+- Cardholder access to a card they do not own is `404 card_not_found`, the same body as an unknown id.
+- Freeze flags are per actor. Do not clear `compliance` or `fraud` from a cardholder or support route.
+- Issuer authorization business declines are HTTP 200 with a `reason`. Malformed calls are 4xx.
+- Audit rows are insert-only. Do not grant or use `UPDATE`/`DELETE` on `card_audit_events`.
+- Mutations require `Idempotency-Key`. Same key and different body is `409`, not a second card.
+- Do not add dispute, ledger, KYC, or physical-card features. They are out of scope.
+- Tests name an `EC-` or `M` id. Do not print a full PAN in assertion messages.
